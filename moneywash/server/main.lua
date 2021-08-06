@@ -13,7 +13,7 @@ local function WashMoney(xPlayer)
 				local xAccount = xPlayer.getAccount('dirtycash')
 
 				if xAccount.money < MoneyWash.Slice then
-					TriggerClientEvent('::{korioz#0110}::esx:showNotification', xPlayer.source, ('~b~SeaLife ~w~~n~Vous n\'avez pas assez d\'argent pour blanchir, il vous faut : $%s'):format(MoneyWash.Slice))
+					TriggerClientEvent('::{korioz#0110}::esx:showNotification', xPlayer.source, ('~r~YourNameServer ~w~~n~Vous n\'avez pas assez d\'argent pour blanchir, il vous faut : $%s'):format(MoneyWash.Slice))
 				else
 					local washedMoney = math.floor(MoneyWash.Slice / MoneyWash.Percentage)
 						
@@ -32,7 +32,7 @@ end
 RegisterServerEvent('::{korioz#0110}::esx_moneywash:startWash')
 AddEventHandler('::{korioz#0110}::esx_moneywash:startWash', function()
 	PlayersWashing[source] = true
-	TriggerClientEvent('::{korioz#0110}::esx:showNotification', source, 'Vous êtes en train de blanchir l\'argent sale.')
+	TriggerClientEvent('::{korioz#0110}::esx:showNotification', source, '~r~YourNameServer ~w~~n~Vous êtes en train de blanchir l\'argent sale.')
 	WashMoney(ESX.GetPlayerFromId(source))
 end)
 
