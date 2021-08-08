@@ -14,9 +14,9 @@ local function WashMoney(xPlayer)
 				if xPlayer.getAccount('dirtycash').money < MoneyWash.MinimumMoney then
 					TriggerClientEvent('::{korioz#0110}::esx:showNotification', xPlayer.source, ('~r~YourNameServer ~w~~n~Vous n\'avez pas assez d\'argent pour blanchir, il vous faut : $%s'):format(MoneyWash.Slice))
 				else
-					local washedMoney = math.floor(MoneyWash.Slice / MoneyWash.Percentage)
+					local washedMoney = math.floor(MoneyWash.MinimumMoney / MoneyWash.Percentage)
 						
-					xPlayer.removeAccountMoney('dirtycash', MoneyWash.Slice)
+					xPlayer.removeAccountMoney('dirtycash', MoneyWash.MinimumMoney)
 					xPlayer.addAccountMoney('cash', washedMoney)
 
 					WashMoney(xPlayer)
