@@ -10,9 +10,8 @@ local function WashMoney(xPlayer)
 	SetTimeout(3000, function()
 		if #(GetEntityCoords(GetPlayerPed(xPlayer.source)) - MoneyWash.Pos) < 10 then
 			if PlayersWashing[xPlayer.source] then
-				local xAccount = xPlayer.getAccount('dirtycash')
 
-				if xAccount.money < MoneyWash.Slice then
+				if xPlayer.getAccount('dirtycash').money < MoneyWash.MinimumMoney then
 					TriggerClientEvent('::{korioz#0110}::esx:showNotification', xPlayer.source, ('~r~YourNameServer ~w~~n~Vous n\'avez pas assez d\'argent pour blanchir, il vous faut : $%s'):format(MoneyWash.Slice))
 				else
 					local washedMoney = math.floor(MoneyWash.Slice / MoneyWash.Percentage)
