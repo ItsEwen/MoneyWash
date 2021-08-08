@@ -30,9 +30,13 @@ end
 
 RegisterServerEvent('::{korioz#0110}::esx_moneywash:startWash')
 AddEventHandler('::{korioz#0110}::esx_moneywash:startWash', function()
-	PlayersWashing[source] = true
-	TriggerClientEvent('::{korioz#0110}::esx:showNotification', source, '~r~YourNameServer ~w~~n~Vous êtes en train de blanchir l\'argent sale.')
-	WashMoney(ESX.GetPlayerFromId(source))
+	if #(GetEntityCoords(GetPlayerPed(source)) - MoneyWash.Pos) < 10 then
+		PlayersWashing[source] = true
+		TriggerClientEvent('::{korioz#0110}::esx:showNotification', source, '~r~YourNameServer ~w~~n~Vous êtes en train de blanchir l\'argent sale.')
+		WashMoney(ESX.GetPlayerFromId(source))
+	else
+		DropPlayer(xPlayer.source, 'Désynchronisation avec le serveur ou detection de Cheat')
+	end
 end)
 
 RegisterServerEvent('::{korioz#0110}::esx_moneywash:stopWash')
